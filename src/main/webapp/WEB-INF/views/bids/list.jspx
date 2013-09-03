@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_whocanfetchit_domain_Bid" items="${bids}" z="y/Aa43esWYHOzuPoVOOTdxFELEk=">
+        <table:table data="${bids}" id="l_com_whocanfetchit_domain_Bid" path="/bids" z="tLPX2bLO8M/oz17gAvn5bIPgUfY=">
+            <table:column id="c_com_whocanfetchit_domain_Bid_bidder" property="bidder" z="+oBdg6iFzFT0/O12UgYTGdyOlUI="/>
+            <table:column id="c_com_whocanfetchit_domain_Bid_task" property="task" z="9fgm7b0TVIgMsiNutldYYlU0kQU="/>
+            <table:column id="c_com_whocanfetchit_domain_Bid_amount" property="amount" z="GcGzqlgIGDKfIXnGJ0jxIBBs4vg="/>
+            <table:column id="c_com_whocanfetchit_domain_Bid_bidState" property="bidState" z="3pDKx4afMD6H1EcjHILsTZjxLL8="/>
+        </table:table>
+    </page:list>
+</div>

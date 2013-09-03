@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_whocanfetchit_domain_TaskStep" modelAttribute="taskStep" path="/tasksteps" versionField="Version" z="Sp0g3nWBjFm4TyD7ydOdMzALoxA=">
+        <field:select field="location" id="c_com_whocanfetchit_domain_TaskStep_location" itemValue="id" items="${locations}" path="/locations" z="4mT+6gS4A9R4ccUdUgt3BBIat4k="/>
+    </form:update>
+</div>

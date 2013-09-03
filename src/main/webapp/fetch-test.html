@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery.post demo</title>
+  <script src="scripts/jquery.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgZm26Ek5AZpET-mkX6ennYUTaY9lz72M&sensor=false">
+  </script>
+</head>
+<body>
+  <form action="/fetch-backend/service/tasks" id="testForm">
+   Description:<input type="text" name="description" placeholder="Task Description" />
+   <br>
+   Pick-up: <input type="text" name="pickup" placeholder="Enter pick-up address"/>
+   <br>
+   Drop-off: <input type="text" name="dropoff" placeholder="Enter drop-off address"/>
+   <input type="submit" value="Create a Task" />
+  </form>
+  <!-- the result of the search will be rendered inside this div -->
+  <div id="result"></div>
+ 
+<script>
+function callREST(url, method, data, callback) {
+	$.ajax({
+		url: url,
+        type: method,
+        contentType: "application/json",
+        dataType: 'json',
+        data: JSON.stringify(data)
+	}).done(callback);
+}
+
+geocoder = new google.maps.Geocoder();
+
+var addresses;
+var task;
+
+function codeAddress() {
+    geocoder.geocode( { 'address': addresses.shift() }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+    	  console.log("address=" + results[0].formatted_address);
+    	  console.log("lat=" + results[0].geometry.location.lat());
+    	  console.log("lng=" + results[0].geometry.location.lng());
+    	  task.steps.push({
+    		  address: results[0].formatted_address,
+    		  latitude: results[0].geometry.location.lat(),
+    		  longitude: results[0].geometry.location.lng()
+    	  });
+    	  
+    	  if (addresses.length > 0) {
+    		  codeAddress();
+    	  } else {
+    		  var url = $("#testForm").attr( 'action' );
+    			callREST(url, "POST", task,
+    					function(result) {
+    						$( "#result" ).empty().append("Result: id=" + result.id + " error=" + result.error);
+    					});
+    	  }
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+
+/* attach a submit handler to the form */
+$("#testForm").submit(function(event) {
+ 
+  /* stop form from submitting normally */
+  event.preventDefault();
+ 
+  /* get some values from elements on the page: */
+  var $form = $( this ),
+      description = $form.find( 'input[name="description"]' ).val(),
+      url = $form.attr( 'action' );
+
+  task = { owner:"anna@glomann.com",
+			description:description,
+			expenses:"48",
+			steps:[],
+//					{address:"101 Residential Dr, Miami FL",latitude:"",longitude:""}],
+					dueDate:"8/25/2013" };
+  addresses = [$form.find( 'input[name="pickup"]' ).val(),
+               $form.find( 'input[name="dropoff"]' ).val()
+               ];
+  
+  codeAddress();
+  
+  /* Send the data using post */
+//	callREST(url, "POST",
+//		  { owner:"anna@glomann.com",
+//		description:description,
+//		expenses:"48",
+//		steps:[codeAddress($form.find( 'input[name="pickup"]' ).val()),
+//		       codeAddress($form.find( 'input[name="dropoff"]').val())],
+//				dueDate:"2013-08-25T17:30:00.000-0400" },
+//		function(result) {
+//			$( "#result" ).empty().append("Result: id=" + result.id + " error=" + result.error);
+//		});
+});
+</script>
+ 
+</body>
+</html>

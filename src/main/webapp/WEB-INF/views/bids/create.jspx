@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_whocanfetchit_domain_Bid" modelAttribute="bid" path="/bids" render="${empty dependencies}" z="jnC/FwW7T2Gksj1AHuObd4nFeL0=">
+        <field:select field="bidder" id="c_com_whocanfetchit_domain_Bid_bidder" itemValue="id" items="${participants}" path="/participants" z="t5jWQfWMrYv6d0TR2FLn3AO+jGg="/>
+        <field:select field="task" id="c_com_whocanfetchit_domain_Bid_task" itemValue="id" items="${tasks}" path="/tasks" z="zKkXyfNt9JM8dfoVNrLfGtqT+3M="/>
+        <field:input field="amount" id="c_com_whocanfetchit_domain_Bid_amount" z="kxvoiunuqE+JT+K3sJK8WRGA3cU="/>
+        <field:select field="bidState" id="c_com_whocanfetchit_domain_Bid_bidState" items="${bidstates}" path="bidstates" z="cBGJwqP5/N3Nuk6DMaM1CNb+eF8="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_whocanfetchit_domain_Bid" render="${not empty dependencies}" z="MWn77c9w6Bq9KMEGA5AsShiwSKo="/>
+</div>

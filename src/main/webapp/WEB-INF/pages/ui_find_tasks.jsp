@@ -1,0 +1,78 @@
+<%@ include file="taglibs.jsp" %>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Find Tasks</title>
+  <script src="${ctx}/resources/scripts/jquery.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgZm26Ek5AZpET-mkX6ennYUTaY9lz72M&sensor=false"></script>
+</head>
+<body>
+<center>
+	<h1>Find Tasks</h1>
+  <form action="${ctx}/service/tasks" id="searchForm">
+   Location: <input type="text" name="location" placeholder="Enter desired location"/>
+   <br>
+   Radius: <input type="text" name="radius" placeholder="Enter radius in miles"/>
+   <br>
+   <input type="submit" value="Find Tasks" />
+  </form>
+  <!-- the result of the search will be rendered inside this div -->
+  <table id="result" border="1">
+  </table>
+</center>
+ 
+<script>
+function callREST(url, method, data, callback) {
+	$.ajax({
+		url: url,
+        type: method,
+        contentType: "application/json",
+        dataType: 'json',
+        data: data
+	}).done(callback);
+}
+
+geocoder = new google.maps.Geocoder();
+
+function codeAddress(address) {
+    geocoder.geocode( { 'address': address }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+    	  console.log("address=" + results[0].formatted_address);
+    	  console.log("lat=" + results[0].geometry.location.lat());
+    	  console.log("lng=" + results[0].geometry.location.lng());
+   		  var url = $("#searchForm").attr( 'action' );
+   			callREST(url, "GET",
+   					{ lat: results[0].geometry.location.lat(),
+   					  lng: results[0].geometry.location.lng(),
+   					  radius: $("#searchForm").find( 'input[name="radius"]' ).val()},
+   					function(result) {
+   						$( "#result" ).empty().append("<tr><th>Description</th><th>Pick-up</th><th>Drop-off</th><th>Due by</th><th>Lowest bid</th><th></th></tr>");
+   						var tasks = result.tasks;
+   						for (var i = 0; i < tasks.length; i++) {
+   							var task = tasks[i];
+   							$( "#result" ).append("<tr><td>" + task.description + "</td><td>" + task.steps[0].address + "</td><td>" + task.steps[1].address + "</td><td>" + task.dueDate + "</td><td>" + task.lowestBid + "</td><td><a href=\"submitbid.html?taskId=" + task.id + "\">Submit Bid</a></td></tr>");
+   						}
+   					});
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+
+/* attach a submit handler to the form */
+$("#searchForm").submit(function(event) {
+ 
+  /* stop form from submitting normally */
+  event.preventDefault();
+ 
+  /* get some values from elements on the page: */
+  var $form = $( this ),
+      url = $form.attr( 'action' );
+
+  codeAddress($form.find( 'input[name="location"]' ).val());
+});
+</script>
+ 
+</body>
+</html>

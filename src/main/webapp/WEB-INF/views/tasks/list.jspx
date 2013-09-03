@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_whocanfetchit_domain_Task" items="${tasks}" z="kgzlsfVNNDuJT1AWHc+oihnXW5c=">
+        <table:table data="${tasks}" id="l_com_whocanfetchit_domain_Task" path="/tasks" z="q3weu54ecXaJ1AC1OLVdHlHdA3o=">
+            <table:column id="c_com_whocanfetchit_domain_Task_owner" property="owner" z="nA2WoxO3900IPnQswUdbJEXKxoE="/>
+            <table:column id="c_com_whocanfetchit_domain_Task_description" property="description" z="F1g6NVnwunpV+0XXA/ew6LbdXHM="/>
+            <table:column id="c_com_whocanfetchit_domain_Task_expenses" property="expenses" z="PFtqK9SFoEKRZL7+yxQ8shyD1xg="/>
+            <table:column date="true" dateTimePattern="${task_duedate_date_format}" id="c_com_whocanfetchit_domain_Task_dueDate" property="dueDate" z="OkY7gjXR1GdJbktGPIhLWj39iew="/>
+            <table:column id="c_com_whocanfetchit_domain_Task_taskState" property="taskState" z="NEuqKQem1KsdcSuLrBlBRLCKMy4="/>
+        </table:table>
+    </page:list>
+</div>

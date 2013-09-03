@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml">
+<div id ="container" style = "padding-bottom:0px">
+<head>
+	<title>whocanfetch.it</title>
+	<link rel="stylesheet" type="text/css" href="whocanfetchit.css"/>
+	<script type="text/javascript" src= 'whocanfetchit.js'></script>
+</head>
+
+<body>
+	<center><div style="width:500px">
+		<h1 style = "margin-top:0px"><center>Welcome to WhoCanFetchIt</center></h1>
+		<p style = "font-size: 32px"><center>Where others can take care of your errands.</center></p>
+	
+	<center><span id="myContainer"></span>
+<script src="https://www.paypalobjects.com/js/external/api.js"></script>
+<script>
+paypal.use( ["login"], function(login) {
+  login.render ({
+    "appid": "AU7-xRBAYFwITlekb0Emxdz4sojmdWEciQDzsuukzLm6K-I-FTUv2qZXO824",
+    "scopes": "profile email address phone https://uri.paypal.com/services/paypalattributes",
+    "containerid": "myContainer",
+    "locale": "en-us",
+    "returnurl": "http://wsmal001.wix.com/whocanfetchit"
+  });
+});
+</script></center>
+
+<p>We give users the opportunity to pay someone to take care of their errands.</p>
+</center>
+
+
+</body>
+</div>
+</html>

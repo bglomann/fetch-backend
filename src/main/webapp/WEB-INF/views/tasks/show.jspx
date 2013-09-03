@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_whocanfetchit_domain_Task" object="${task}" path="/tasks" z="+YHxfkxxSAFqHPOuh7aC1riUUS0=">
+        <field:display field="owner" id="s_com_whocanfetchit_domain_Task_owner" object="${task}" z="lgjQ53amNTuSwFS0ky77/wMR78o="/>
+        <field:display field="description" id="s_com_whocanfetchit_domain_Task_description" object="${task}" z="1ONM7K90w+kOvQsxdDQiqFKG2Oo="/>
+        <field:display field="expenses" id="s_com_whocanfetchit_domain_Task_expenses" object="${task}" z="Dg+5fCHtnKfJsfEhxqoGn8Q5Pzo="/>
+        <field:display date="true" dateTimePattern="${task_duedate_date_format}" field="dueDate" id="s_com_whocanfetchit_domain_Task_dueDate" object="${task}" z="Y/rjWsQR7iolBHfzzm83jg8X0cI="/>
+        <field:display field="taskState" id="s_com_whocanfetchit_domain_Task_taskState" object="${task}" z="BnvPC9O/Ot2MrOY6Re5fWE5Npvw="/>
+    </page:show>
+</div>
